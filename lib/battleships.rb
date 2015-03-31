@@ -12,6 +12,10 @@ class BattleShips < Sinatra::Base
       erb :game_start
     end
 
+    get '/start' do
+      'hello'
+    end
+
   # start the server if ruby file executed directly
   run! if app_file == $0
 
