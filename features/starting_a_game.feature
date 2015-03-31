@@ -9,6 +9,6 @@ Scenario: Registering
   Then I should see "What's your name?"
 
 Scenario: Registering
-  Given I am on the game start page
-  When I don't want to give a name
-  Then I get a default name
+  Given I am on the new game page
+  When I follow "use a default name"
+  Then I should see "Hello, Player1!"
