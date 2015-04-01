@@ -2,7 +2,7 @@ class Board
   DEFAULT_SIZE = 1
   DEFAULT_NUMBER_OF_PIECES = 1
 
-  attr_reader :grid, :number_of_pieces
+  attr_reader :grid, :number_of_pieces, :size
 
   def initialize options
     size = options.fetch(:size, DEFAULT_SIZE)
@@ -20,7 +20,7 @@ class Board
   end
 
   def dimension_size size
-    Math.sqrt(size).floor
+   @size = Math.sqrt(size).floor
   end
 
   def fill_all_content content
