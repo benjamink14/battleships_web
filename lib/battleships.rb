@@ -7,7 +7,7 @@ require_relative 'ship'
 require_relative 'water'
 
 class BattleShips < Sinatra::Base
-  set :public, Proc.new { File.join(root,"..", "public")} 
+  set :public, Proc.new { File.join(root,"..", "public")}
 
   enable :sessions
 
@@ -31,9 +31,16 @@ class BattleShips < Sinatra::Base
   end
 
    get '/hit' do
+    @ship_length = params[:length].to_i
+    @ship_direction = params[:direction]
+    @cell_for_ship = params[:cell].to_sym
     @coordinate_to_hit = params[:coordinate_to_hit]
     @board = session[:board]
-    @board.hit_coordinate(@coordinate_to_hit)
+    if @ship_length
+      @ship = Ship.new({size: @ship_length})
+      @board.place @ship, @cell_for_ship, @ship_direction
+    end
+    @board.hit_coordinate(@coordinate_to_hit) if @coordinate_to_hit
     erb :start
   end
 

@@ -40,19 +40,30 @@
   <% end %>
   </table>
 </div>
-<div id = "ships">
-  Place a ship
-   <br>
-   <br>
-  Enter cell
- <input type= "text" id= "cell">
- <br>
-<br>
 
-Direction
- <input type= "text" id= "direction"> 
+<div id = "ships">
+  <form action='/hit'>
+  Place a ship
   <br>
-</div>
+  <br>
+  Enter cell
+  <input type= "text" name= "cell">
+  <br>
+  <br>
+
+  Direction
+  <input type= "text" name= "direction">
+  <br>
+  <br>
+
+  Length
+  <input type= "text" name= "length">
+  <br>
+  <br>
+  <input type="submit" value="Place">
+  </form>
+  </div>
+
 </center>
 </body>
 </html>
