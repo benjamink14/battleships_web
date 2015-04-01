@@ -61,6 +61,11 @@ class Board
     grid[cell].content.hit
   end
 
+  def hit_coordinate coordinate
+    # raise "Can't bomb a cell that doesn't exist" unless coordinate_on_board? grid[coordinate.to_sym]
+    grid[coordinate.to_sym].hit
+  end
+
   def all_ships_sunk?
     ships.all?(&:sunk?)
   end

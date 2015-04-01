@@ -8,6 +8,8 @@ require_relative 'water'
 
 class BattleShips < Sinatra::Base
 
+  enable :sessions
+
 # GAME = Game.new
   set :views, Proc.new { File.join(root,"..", "views")}
   get '/' do
@@ -17,12 +19,13 @@ class BattleShips < Sinatra::Base
   get '/new_game' do
     'What s your name?'
     erb :game_start
-  end  
+  end
 
   get '/start' do
     @player = params[:name]
     @game = Game.new(Player.new('Guillaume'), Player.new('Caron'))
-    session[:board] = @board = Board.new({size: 100, cell: Cell, number_of_pieces: 5})
+    @board = session[:board] || Board.new({size: 100, cell: Cell, number_of_pieces: 5})
+    session[:board] = @board
     erb :start
   end
 
