@@ -15,5 +15,4 @@ Scenario: Registering
 
 Scenario: begininga game
   Given I am on the start page
-  when I press "Fire"
-  Then 
+  Then I should see a baord
