@@ -15,4 +15,4 @@ Scenario: Registering
 
 Scenario: begininga game
   Given I am on the start page
-  Then I should see a baord
+  Then I should see an HTML table with at least column: "1" and row: "A"
