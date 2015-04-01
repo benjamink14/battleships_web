@@ -5,3 +5,18 @@ button {
   margin-left: 3px;
   margin-top: 3px;
 }
+
+#board {
+  float: left; 
+  width: 50%;
+  padding: 15px;
+  border: 1px dashed red; 
+}
+
+#ships {
+  height: 430px; 
+  border: 1px solid black;
+  width: 300px;
+  float: right;
+  padding-top: 20px;
+}

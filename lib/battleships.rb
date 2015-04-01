@@ -7,6 +7,7 @@ require_relative 'ship'
 require_relative 'water'
 
 class BattleShips < Sinatra::Base
+  set :public, Proc.new { File.join(root,"..", "public")} 
 
   enable :sessions
 

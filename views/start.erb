@@ -9,12 +9,13 @@
 <center>
   <br>
   <br>
-  Hello <%= @player %>
-  Take a shot!
 <br><br>
 
-<div id = "board ">
+<div id = "board">
   <table>
+  Hello <%= @player %>
+  Take a shot!
+  <br>
   <% (0..@board.size).each do |row| %>
   <tr>
     <% (0..@board.size).each do |column| %>
@@ -36,9 +37,21 @@
       <% end %>
     <% end %>
   </tr>
-
   <% end %>
   </table>
+</div>
+<div id = "ships">
+  Place a ship
+   <br>
+   <br>
+  Enter cell
+ <input type= "text" id= "cell">
+ <br>
+<br>
+
+Direction
+ <input type= "text" id= "direction"> 
+  <br>
 </div>
 </center>
 </body>
