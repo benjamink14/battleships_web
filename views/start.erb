@@ -13,7 +13,7 @@
   Take a shot!
 <br><br>
 
-<div id = "board">
+<div id = "board ">
   <table>
   <% (0..@board.size).each do |row| %>
   <tr>
@@ -28,7 +28,7 @@
         </td>
       <% else %>
         <td>
-          <form action='/hit'>
+          <form action='/start'>
             <input type="hidden" name="coordinate_to_hit" value="<%= ((row+64).chr + column.to_s) %>">
             <input type="submit" value=<%= @board.grid[((row+64).chr + column.to_s).to_sym].content %>>
           </form>

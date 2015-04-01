@@ -26,6 +26,13 @@ class BattleShips < Sinatra::Base
     erb :start
   end
 
+   get '/start' do
+    @coordinate_on_board = params[:coordinate_to_hit]
+    @board = Board.new({size: 100, cell: Cell, number_of_pieces: 5})
+    @cell.hit = true
+     erb :start
+  end
+
   # start the server if ruby file executed directly
   run! if app_file == $0
 end
