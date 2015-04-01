@@ -23,14 +23,15 @@ class BattleShips < Sinatra::Base
     @player = params[:name]
     @game = Game.new(Player.new('Guillaume'), Player.new('Caron'))
     @board = Board.new({size: 100, cell: Cell, number_of_pieces: 5})
+    session[:board] = @board
     erb :start
   end
 
    get '/start' do
-    @coordinate_on_board = params[:coordinate_to_hit]
+    @coordinate_to_hit = params[:coordinate_to_hit]
     @board = Board.new({size: 100, cell: Cell, number_of_pieces: 5})
-    @cell.hit = true
-     erb :start
+    @cell.hit_coordinate(@coordinate_to_hit)
+    erb :start
   end
 
   # start the server if ruby file executed directly
