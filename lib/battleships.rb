@@ -22,15 +22,14 @@ class BattleShips < Sinatra::Base
   get '/start' do
     @player = params[:name]
     @game = Game.new(Player.new('Guillaume'), Player.new('Caron'))
-    @board = Board.new({size: 100, cell: Cell, number_of_pieces: 5})
-    session[:board] = @board
+    session[:board] = @board = Board.new({size: 100, cell: Cell, number_of_pieces: 5})
     erb :start
   end
 
-   get '/start' do
+   get '/hit' do
     @coordinate_to_hit = params[:coordinate_to_hit]
-    @board = Board.new({size: 100, cell: Cell, number_of_pieces: 5})
-    @cell.hit_coordinate(@coordinate_to_hit)
+    @board = session[:board]
+    @board.hit_coordinate(@coordinate_to_hit)
     erb :start
   end
 

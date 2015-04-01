@@ -28,7 +28,7 @@
         </td>
       <% else %>
         <td>
-          <form action='/start'>
+          <form action='/hit'>
             <input type="hidden" name="coordinate_to_hit" value="<%= ((row+64).chr + column.to_s) %>">
             <input type="submit" value=<%= @board.grid[((row+64).chr + column.to_s).to_sym].content %>>
           </form>
