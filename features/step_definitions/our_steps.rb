@@ -25,7 +25,17 @@ Then /^(?:|I )should see "([^\"]*)"(?: within "([^\"]*)")?$/ do |text, selector|
   end
 end
 
-Then /^I should see an HTML table with at least column: "([^"]*)" and row: "([^"]*)"$/ do |column, row|
+Then /^I should see an HTML table with at least column: "([^\"]*)" and row: "([^\"]*)"$/ do |column, row|
   page.should have_content(column)
   page.should have_content(row)
+end
+
+And /^I click on the button "([^\"]*)"$/ do |cell|
+  click_button(cell)
+end
+
+
+Then /^I should see HE at "([^\"]*)"$/ do |cell|
+  button = page.find_button(cell)
+  expect(button.value).to eq "HE"
 end
