@@ -11,4 +11,4 @@ Scenario: Registering
 Scenario: Registering
   Given I am on the new game page
   When I follow "use a default name"
-  Then I should see "Hello, Player1!"
+  Then I should see "Hello Player1!"
