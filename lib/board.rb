@@ -37,6 +37,7 @@ class Board
 
   def place ship, coordinate, orientation = :horizontally
     raise "You can't place a ship outside the boundaries" unless coordinates_for(ship.size, coordinate, orientation).all? {|coordinate| coordinate_on_board?(coordinate)}
+    raise "You can't overlap ships" unless coordinates_for(ship.size, coordinate, orientation).all? {|coordinate| coordinate_occupied?(coordinate)}
     coordinates_for(ship.size, coordinate, orientation).each do |coordinate|
       grid[coordinate].content = ship
     end
@@ -54,6 +55,10 @@ class Board
 
   def coordinate_on_board? coordinate
     !grid[coordinate].nil?
+  end
+
+  def coordinate_occupied? coordinate
+    !grid[coordinate].content.is_a? Ship
   end
 
   def hit cell
