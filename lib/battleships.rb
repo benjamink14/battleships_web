@@ -25,22 +25,26 @@ class BattleShips < Sinatra::Base
   get '/start' do
     @player = params[:name]
     @game = Game.new(Player.new('Guillaume'), Player.new('Caron'))
-    @board = session[:board] || Board.new({size: 100, cell: Cell, number_of_pieces: 5})
+    @board = Board.new({size: 100, cell: Cell, number_of_pieces: 5})
+    # If you close window, you can't come back to game
     session[:board] = @board
     erb :start
   end
 
    get '/hit' do
+    @coordinate_to_hit = params[:coordinate_to_hit]
+    @board = session[:board]
+    @board.hit_coordinate(@coordinate_to_hit) if @coordinate_to_hit
+    erb :start
+  end
+
+  get '/place_ship' do
+    @board = session[:board]
     @ship_length = params[:length].to_i
     @ship_direction = params[:direction]
     @cell_for_ship = params[:cell].to_sym
-    @coordinate_to_hit = params[:coordinate_to_hit]
-    @board = session[:board]
-    if @ship_length
-      @ship = Ship.new({size: @ship_length})
-      @board.place @ship, @cell_for_ship, @ship_direction
-    end
-    @board.hit_coordinate(@coordinate_to_hit) if @coordinate_to_hit
+    @ship = Ship.new({size: @ship_length})
+    @board.place @ship, @cell_for_ship, @ship_direction
     erb :start
   end
 
