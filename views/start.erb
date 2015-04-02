@@ -7,9 +7,6 @@
 
 <body>
 <center>
-  <br>
-  <br>
-<br><br>
 
 <div id = "board">
   <table>
@@ -48,22 +45,24 @@
 <div id = "ships">
   <form action='/place_ship'>
   Place a ship
-  <br>
-  <br>
+  <br><br>
+  Ships yet to be placed:
+  <% if !GAME.players.include?(session[:player]) %>
+    Player not found
+  <% else %>
+    <% @player = GAME.players[session[:player]] %>
+    <% @player.ships.each do |ship| %>
+    <input type= "radio" name= "length" value="length">Length: <%= ship.size %>
+    <% end %>
+  <% end %>
+  <br><br>
   Enter cell
   <input type= "text" name= "cell">
-  <br>
-  <br>
+  <br><br>
 
   Direction
   <input type= "radio" name= "direction" value="horizontally"> horizontally
   <input type= "radio" name= "direction" value="vertically"> vertically
-  <br>
-  <br>
-
-  Length
-  <input type= "text" name= "length">
-  <br>
   <br>
   <input type="submit" value="Place">
   </form>

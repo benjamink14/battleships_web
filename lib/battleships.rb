@@ -5,13 +5,15 @@ require_relative 'board'
 require_relative 'cell'
 require_relative 'ship'
 require_relative 'water'
+require 'byebug'
 
 class BattleShips < Sinatra::Base
   set :public, Proc.new { File.join(root,"..", "public")}
 
   enable :sessions
 
-# GAME = Game.new
+  GAME = nil
+
   set :views, Proc.new { File.join(root,"..", "views")}
   get '/' do
     erb :index
@@ -24,9 +26,10 @@ class BattleShips < Sinatra::Base
 
   get '/start' do
     @player = params[:name]
-    @game = Game.new(Player.new('Guillaume'), Player.new('Caron'))
-    @board = Board.new({size: 100, cell: Cell, number_of_pieces: 5})
+    GAME = Game.new(Player.new(@player, Ship), Player.new("Player2", Ship))
+    @board = session[:board] || Board.new({size: 100, cell: Cell, number_of_pieces: 5})
     # If you close window, you can't come back to game
+    session[:player] = @player
     session[:board] = @board
     erb :start
   end

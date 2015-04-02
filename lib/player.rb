@@ -1,10 +1,15 @@
 class Player
 
-  attr_reader :name
+  attr_reader :name, :ships
   attr_accessor :board
 
-  def initialize name
+  def initialize name, ship_class
     @name = name
+
+    # Standard list, can try custom list later:
+    @ships = [ship_class.new({size: 5}), ship_class.new({size: 4}),
+      ship_class.new({size: 3}), ship_class.new({size: 3}),
+      ship_class.new({size: 2})]
   end
 
   def has_board?
