@@ -48,6 +48,10 @@ class BattleShips < Sinatra::Base
     @cell_for_ship = params[:cell].upcase.to_sym
     @ship = Ship.new({size: @ship_length})
     @board.place @ship, @cell_for_ship, @ship_direction
+    @player = GAME.players[session[:player]]
+    @player.ships.each do |ship|
+      @player.ships.delete(ship) if ship.size == @ship_length 
+    end
     erb :start
   end
 
