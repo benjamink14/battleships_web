@@ -52,7 +52,8 @@
   <% else %>
     <% @player = GAME.players[session[:player]] %>
     <% @player.ships.each do |ship| %>
-    <input type= "radio" name= "length" value="length">Length: <%= ship.size %>
+      <br>
+      <input type= "radio" name="length" value="<%= ship.size %>">Length: <%= ship.size %>
     <% end %>
   <% end %>
   <br><br>

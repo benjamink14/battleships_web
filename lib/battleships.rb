@@ -45,7 +45,7 @@ class BattleShips < Sinatra::Base
     @board = session[:board]
     @ship_length = params[:length].to_i
     @ship_direction = params[:direction].to_sym
-    @cell_for_ship = params[:cell].to_sym
+    @cell_for_ship = params[:cell].upcase.to_sym
     @ship = Ship.new({size: @ship_length})
     @board.place @ship, @cell_for_ship, @ship_direction
     erb :start

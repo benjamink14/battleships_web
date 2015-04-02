@@ -1,7 +1,7 @@
 class Player
 
-  attr_reader :name, :ships
-  attr_accessor :board
+  attr_reader :name
+  attr_accessor :board, :ships
 
   def initialize name, ship_class
     @name = name
