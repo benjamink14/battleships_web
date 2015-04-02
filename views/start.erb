@@ -31,7 +31,11 @@
         <td>
           <form action='/hit'>
             <input type="hidden" name="coordinate_to_hit" value="<%= ((row+64).chr + column.to_s) %>">
-            <input type="submit" id="<%= ((row+64).chr + column.to_s) %>" value=<%= @board.grid[((row+64).chr + column.to_s).to_sym].content %>>
+            <% if @board.grid[((row+64).chr + column.to_s).to_sym].content.is_a? Ship %>
+              <input type="submit" id="<%= ((row+64).chr + column.to_s) %>" value="S">
+            <% else %>
+              <input type="submit" id="<%= ((row+64).chr + column.to_s) %>" value=<%= @board.grid[((row+64).chr + column.to_s).to_sym].content %>>
+            <% end %>
           </form>
         </td>
       <% end %>
